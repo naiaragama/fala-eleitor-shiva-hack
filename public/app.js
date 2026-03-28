@@ -6,7 +6,7 @@ async function init() {
   const container = document.getElementById("cards");
 
   for (const c of candidatos) {
-    const foto = `https://www.camara.leg.br/internet/deputado/bandep/${c.id}.jpg`;
+    const foto = `/api/fotos/${c.id}.jpg`;
     const espectroClass = c.espectro.toLowerCase().includes("esquerda")
       ? "badge-esquerda"
       : "badge-centro-direita";
@@ -50,7 +50,7 @@ async function loadDeputado(id, nome) {
 function renderDeputado(d) {
   const p = d.perfil;
   const nome = p?.ultimoStatus?.nome || d.candidato?.nome || "—";
-  const foto = p ? `https://www.camara.leg.br/internet/deputado/bandep/${p.id}.jpg` : "";
+  const foto = p ? `/api/fotos/${p.id}.jpg` : "";
 
   let html = `
     <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">

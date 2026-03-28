@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import deputadosRouter from "./routes/deputados.js";
 import webhookRouter from "./routes/webhook.js";
+import fotosRouter from "./routes/fotos.js";
 
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
@@ -21,6 +22,7 @@ app.use(express.static(join(__dirname, "..", "public")));
 // API routes
 app.use("/api/deputados", deputadosRouter);
 app.use("/api/webhook", webhookRouter);
+app.use("/api/fotos", fotosRouter);
 
 // Health check
 app.get("/api/health", (_req, res) => {
