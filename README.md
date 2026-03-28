@@ -1,4 +1,4 @@
-# Fiscaliza RJ - MVP
+# Fala Eleitor - MVP
 
 Aplicação para acompanhamento de deputados federais do RJ via WhatsApp, usando APIs governamentais, PostgreSQL e Tess AI.
 
