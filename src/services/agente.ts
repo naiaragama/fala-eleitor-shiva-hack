@@ -106,7 +106,7 @@ async function buscarDespesas(id: number) {
 
 async function buscarProposicoes(id: number) {
   const r = await query(
-    `SELECT sigla_tipo, numero, ano, ementa FROM proposicoes
+    `SELECT id as prop_id, sigla_tipo, numero, ano, ementa FROM proposicoes
      WHERE deputado_id = $1 AND sigla_tipo IN ('PL','PEC','PLP','PDL','MPV')
      ORDER BY ano DESC, data_apresentacao DESC LIMIT 10`, [id]
   );
@@ -268,7 +268,9 @@ async function respostaProposicoes(id: number, label: string): Promise<string> {
   txt += `\n🔝 *Mais recentes (PL/PEC/PLP):*`;
   for (const p of d.proposicoes) {
     const ementa = p.ementa ? p.ementa.substring(0, 100) : "Sem ementa";
+    const link = `https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=${p.prop_id}`;
     txt += `\n• *${p.sigla_tipo} ${p.numero}/${p.ano}* — ${ementa}`;
+    txt += `\n  🔗 ${link}`;
   }
   txt += `\n\n📡 _Fonte: API Câmara dos Deputados_`;
   return txt;

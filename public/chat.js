@@ -20,6 +20,7 @@ function addMsg(type, text) {
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
     .replace(/\*([^*]+)\*/g, "<strong>$1</strong>")
     .replace(/_([^_]+)_/g, "<em>$1</em>")
+    .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener" style="color:#38bdf8;word-break:break-all">$1</a>')
     .replace(/\n/g, "<br>");
   chatMessages.appendChild(div);
   chatMessages.scrollTop = chatMessages.scrollHeight;
