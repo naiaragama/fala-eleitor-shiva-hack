@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fala Eleitor - Deputados Federais</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0f172a; color: #e2e8f0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+    header { text-align: center; padding: 2rem 0; border-bottom: 1px solid #1e293b; margin-bottom: 2rem; }
+    header h1 { font-size: 2rem; color: #38bdf8; }
+    header p { color: #94a3b8; margin-top: 0.5rem; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .card {
+      background: #1e293b; border-radius: 12px; padding: 1.5rem;
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #334155;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+    .card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .card-header img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid #38bdf8; }
+    .card-header h2 { font-size: 1.1rem; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+    .badge-esquerda { background: #dc2626; color: white; }
+    .badge-centro-direita { background: #2563eb; color: white; }
+    .card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 1rem; }
+    .stat { background: #0f172a; padding: 0.5rem; border-radius: 8px; text-align: center; }
+    .stat-label { font-size: 0.7rem; color: #64748b; text-transform: uppercase; }
+    .stat-value { font-size: 0.9rem; font-weight: 600; color: #38bdf8; }
+    .cassado { opacity: 0.6; border-color: #ef4444; }
+    .cassado .badge { background: #7f1d1d; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🏛️ Fala Eleitor</h1>
+      <p>Dados abertos de deputados federais do Rio de Janeiro</p>
+    </header>
+    <div class="cards" id="cards"></div>
+  </div>
+  <div id="modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:100; overflow-y:auto;">
+    <div style="max-width:800px; margin:2rem auto; background:#1e293b; border-radius:12px; padding:2rem; position:relative;">
+      <button onclick="document.getElementById('modal').style.display='none'"
+        style="position:absolute; top:1rem; right:1rem; background:none; border:none; color:#94a3b8; font-size:1.5rem; cursor:pointer;">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
