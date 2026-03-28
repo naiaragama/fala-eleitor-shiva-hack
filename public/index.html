@@ -30,6 +30,46 @@
     .stat-value { font-size: 0.9rem; font-weight: 600; color: #38bdf8; }
     .cassado { opacity: 0.6; border-color: #ef4444; }
     .cassado .badge { background: #7f1d1d; }
+
+    /* Chat Widget */
+    #chat-toggle {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+      width: 60px; height: 60px; border-radius: 50%; border: none;
+      background: linear-gradient(135deg, #22c55e, #16a34a); color: white;
+      font-size: 1.8rem; cursor: pointer; box-shadow: 0 4px 15px rgba(34,197,94,0.4);
+      transition: transform 0.2s;
+    }
+    #chat-toggle:hover { transform: scale(1.1); }
+    #chat-box {
+      display: none; position: fixed; bottom: 5.5rem; right: 1.5rem; z-index: 200;
+      width: 380px; max-height: 520px; background: #1e293b; border-radius: 16px;
+      border: 1px solid #334155; box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      flex-direction: column; overflow: hidden;
+    }
+    #chat-box.open { display: flex; }
+    #chat-header {
+      padding: 1rem; background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: white; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;
+    }
+    #chat-messages {
+      flex: 1; overflow-y: auto; padding: 1rem; min-height: 300px; max-height: 360px;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .msg { padding: 0.6rem 0.8rem; border-radius: 12px; max-width: 85%; font-size: 0.85rem; line-height: 1.4; white-space: pre-wrap; }
+    .msg-user { background: #22c55e; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+    .msg-bot { background: #334155; color: #e2e8f0; align-self: flex-start; border-bottom-left-radius: 4px; }
+    #chat-input-area { display: flex; padding: 0.75rem; border-top: 1px solid #334155; gap: 0.5rem; }
+    #chat-input {
+      flex: 1; background: #0f172a; border: 1px solid #475569; border-radius: 8px;
+      padding: 0.5rem 0.75rem; color: #e2e8f0; font-size: 0.85rem; outline: none;
+    }
+    #chat-input:focus { border-color: #22c55e; }
+    #chat-send {
+      background: #22c55e; border: none; border-radius: 8px; padding: 0.5rem 1rem;
+      color: white; font-weight: 600; cursor: pointer;
+    }
+    #chat-send:hover { background: #16a34a; }
+    @media (max-width: 480px) { #chat-box { width: calc(100vw - 2rem); right: 1rem; bottom: 5rem; } }
 </style>
 </head>
 <body>
@@ -48,5 +88,18 @@
     </div>
   </div>
   <script src="app.js"></script>
+
+  <!-- Chat Widget -->
+  <button id="chat-toggle" onclick="toggleChat()" aria-label="Abrir chat">💬</button>
+  <div id="chat-box">
+    <div id="chat-header">💬 Fala Eleitor — Assistente</div>
+    <div id="chat-messages"></div>
+    <div id="chat-input-area">
+      <input id="chat-input" type="text" placeholder="Pergunte sobre um deputado..." 
+             onkeydown="if(event.key==='Enter')sendChat()" autocomplete="off">
+      <button id="chat-send" onclick="sendChat()">Enviar</button>
+    </div>
+  </div>
+  <script src="chat.js"></script>
 </body>
 </html>
